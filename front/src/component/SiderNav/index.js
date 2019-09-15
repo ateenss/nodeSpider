@@ -92,7 +92,7 @@ class SiderNav extends React.Component {
 
         return (
             <div style={{height: '100vh',overflowY:'scroll'}}>
-                <div style={styles.logo}></div>
+                <div style={styles.logo}>管理平台</div>
                 <CustomMenu menus={menus}/>
             </div>
         )
@@ -105,6 +105,6 @@ const styles = {
         background: 'rgba(255, 255, 255, .2)',
         margin: '16px'
     }
-}
+};
 
 export default SiderNav
