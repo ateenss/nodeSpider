@@ -3,6 +3,7 @@ var gulp = require('gulp');
 //js文件壓縮
 var uglify = require('gulp-uglify');
 var pump = require('pump');
+
 gulp.task('compress', function (cb) {
     pump([
             gulp.src('lib/*.js'),
@@ -33,7 +34,7 @@ gulp.task('minify', function() {
 
 //js代碼檢查
 
-    var jshint = require("gulp-jshint");
+    var jshint = require('gulp-jshint');
 
 gulp.task('jsLint', function () {
     gulp.src('js/*.js')
@@ -52,7 +53,8 @@ gulp.task('concat', function () {
 
 //圖片壓縮
 var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant'); //png图片压缩插件
+var pngquant = require('imagemin-pngquant');
+ //png图片压缩插件
 gulp.task('default', function () {
     return gulp.src('src/images/*')
         .pipe(imagemin({
