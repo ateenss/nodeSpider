@@ -21,14 +21,4 @@
 
 
 !/back/test/
-back/auth/
-back/controller/
-back/public/images/
-back/public/javascripts/
-front/src/data/
-front/src/dist/
-front/src/redux/
-front/src/route/
-front/src/view/
-public/dist/
-public/img/
+
