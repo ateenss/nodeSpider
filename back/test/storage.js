@@ -4,24 +4,29 @@ const chokidar = require('chokidar');
 
 class Storage {
     constructor(dataDir, id) {
-        this.dataDir = dataDir;
+        //todo:这里记得去掉dir参数
+        // this.dataDir = dataDir;,两个入参好像都没啥用
         this.id = id;
-
-        this.workingDir = path.join(this.dataDir, 'working', this.id.toString());
+        this.workingQueue=[];
+        this.pendingQueue=[];
+        this.abortQueue=[];
+        /*this.workingDir = path.join(this.dataDir, 'working', this.id.toString());
         this.pendingDir = path.join(this.dataDir, 'pending');
-        this.abortDir = path.join(this.dataDir, 'abort');
+        this.abortDir = path.join(this.dataDir, 'abort');*/
     }
 
-    async ensureDataDirs() {
+    //todo:一共有三个文件夹，对应三个队列，如何把三个文件对应三个队列是主要问题
+    /*async ensureDataDirs() {
         await fs.mkdirp(this.workingDir);
         await fs.mkdirp(this.pendingDir);
         await fs.mkdirp(this.abortDir);
-    }
+    }*/
 
     async getNextMessageId() {
-        const files = await fs.readdir(this.pendingDir);
+        // const files = await fs.readdir(this.pendingDir);
+        let pendingUnit = this.pendingQueue.shift();
 
-        if (files.length > 0) {
+        if (pendingUnit) {
             const nextMessageId = files[0];
 
             const isClaimedFile = await this.tryClaimMessage(nextMessageId);
