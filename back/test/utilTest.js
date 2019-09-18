@@ -2,7 +2,7 @@ class messageQueue {
     /*消息队列类*/
     constructor(maxNumber) {
         (maxNumber === 0 || (typeof maxNumber !== 'number')) ? (this.maxNumber = 1)
-            : (this.maxNumber = maxNumber);//上来设置最高并发数
+            : (this.maxNumber = maxNumber);//设置最高队列内数量
         this.queue = [];//任务列表
         this.currentTaskNumber = 0;//当前任务数
         this.ifStop = false;//是否暂停
@@ -42,59 +42,59 @@ class messageQueue {
     fire(){
         if(!this.ifStop){
             //计算可以运行任务
-            let canRunTaskNumber = this.maxNumber - this.currentTaskNumber;
-            let realRunTaskNumber = 0; //保存最终可以运行的任务数量
+            let leftRunTaskNumber = this.maxNumber - this.currentTaskNumber;
+            let canRunTaskNumber = 0; //保存最终可以运行的任务数量
             let canRunTaskArray=[];
-            canRunTaskNumber - this.queue.length > 0 ? realRunTaskNumber = this.queue.length
-                : realRunTaskNumber = canRunTaskNumber;
-            while(realRunTaskNumber){
+            leftRunTaskNumber - this.queue.length > 0 ? canRunTaskNumber = this.queue.length
+                : canRunTaskNumber = leftRunTaskNumber;
+            while(canRunTaskNumber){
                 this.queue.length>0 &&canRunTaskArray.push(this.queue.shift()||function () {});
-                realRunTaskNumber--;
+                canRunTaskNumber--;
             }
             ((obj)=>{
-                canRunTaskArray.forEach((item)=>{
-                    obj.currentTaskNumber++;
-                    item().then((msg)=>{
-                        console.log(msg);//todo:这里负责处理队列里的东西(核心处理函数)
-                        if(obj.queryNumber() && obj.currentTaskNumber--){
-                            if(obj.maxNumber-obj.currentTaskNumber>0 && obj.ifStop===false){
-                                obj.fire();
+                if(canRunTaskArray.length>0){
+                    canRunTaskArray.forEach((item)=>{
+                        obj.currentTaskNumber++;
+                        item().then((msg)=>{
+                            console.log(msg);//todo:这里负责处理队列里的东西(核心处理函数)
+                            if(obj.queryNumber() && obj.currentTaskNumber--){
+                                if(obj.maxNumber-obj.currentTaskNumber>0 && obj.ifStop===false){
+                                    setTimeout(()=>{
+                                        obj.fire();
+                                    },50);
+                                }
                             }
-                        }
+                        });
                     });
-                });
+                }else{
+                    setTimeout(()=>{
+                        obj.fire();
+                    },50);
+                }
             })(this);
 
         }
     }
 
-
-
-    /*add(unit,socket,content){
-        setTimeout(()=>{
-            this.queue.push(unit);
-            socket.write(content);
-        },500);
-    }
-    fire(fn){
-        this.queue.length>0 && setTimeout(()=>{
-            fn(this.queue.shift());
-        },500);
-    }*/
 }
+
+const getData=(socket)=>{
+    return new Promise((resolve, reject) => {
+        socket.on('data',(data)=>{
+            resolve(data);
+        });
+        socket.on('error',err=>{
+            reject(err);
+        });
+        socket.on('close',info=>{
+            reject(info);
+        });
+    });
+};
 
 //实验动作区
 let messageQueue1 = new messageQueue(10);
 
 console.log(messageQueue1.maxNumber);
-/*function add(){
-    // this.queue=['a','b'];
-    this.queue=[];
-    this.k=[];
-    this.k.push(this.queue.shift()||function () {});
-    // return this.k[0];
-    return this.k[0];
-}
 
-console.log(add());*/
 

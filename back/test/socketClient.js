@@ -19,28 +19,5 @@ client.on('error',(e)=>{
 关键是客户端如何解决队列问题
 主要是两个难题：1.解决队列本身；2.如何将promise和socket函数融合进来
 */
-class messageQueue{
-    constructor(maxNumber){
-        (maxNumber===0 & (typeof maxNumber !== 'number')) && (this.maxNumber=1);
-        this.maxNumber=maxNumber;//上来设置最高并发数
-    }
-    /*消息队列类*/
-    queue=[];//任务列表
-    currentTaskNumber=0;//当前任务数
-    ifStop=false;//是否暂停
 
-
-
-    add(unit,socket,content){
-        setTimeout(()=>{
-            this.queue.push(unit);
-            socket.write(content);
-        },500);
-    }
-    fire(fn){
-        this.queue.length>0 && setTimeout(()=>{
-            fn(this.queue.shift());
-        },500);
-    }
-}
 
