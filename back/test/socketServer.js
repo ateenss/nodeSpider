@@ -1,11 +1,14 @@
 const net=require('net');
 
 const server = net.createServer((socket) => {
-    setTimeout(()=>{
+    /*setTimeout(()=>{
         socket.write('这是服务器发出的信息');
-    },3000);
+    },3000);*/
     socket.on('data',(data)=>{
         console.log(`这是服务器端接收到的信息: ${data}`);
+        /*data.msg=data.msg+'：：這其實是服務段處理的數據';
+        socket.write(data);*/
+
     });
 });
 
