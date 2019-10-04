@@ -23,3 +23,6 @@
 
 ps：留白：passport等authtacaion验证通过
 工具下次记得实验，目前还没能实验到，mysql还不知道如何连接如何写
+
+
+

@@ -6,18 +6,15 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": [
-        "airbnb","eslint:recommended", "plugin:react/recommended"
-    ],
     "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
-        },
-        "sourceType": "module"
+        }
     },
-    "plugins": [
-        "react", "jsx-a11y", "import"
+    "extends": [
+        "airbnb"
     ],
     "rules": {
         "quotes": [

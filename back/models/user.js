@@ -1,5 +1,5 @@
 export default function(sequelize, DataTypes) {
-    var User = sequelize.define('user', {
+    let User = sequelize.define('user', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,

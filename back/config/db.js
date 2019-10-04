@@ -1,6 +1,8 @@
-import {Sequelize} from 'sequelize';
+'use strict';
+//load sequelize
+let Sequelize=require('sequelize');
 // load db.json
-import configs from './db.json';
+let configs = require('./db.json');
 
 const dbHost = configs.mysql.host,
     dbPort = configs.mysql.port,
@@ -21,7 +23,7 @@ const db = {
         },
         define: {
             freezeTableName: true,
-            timestamps: false
+            timestamps: true
         }
     })
 };

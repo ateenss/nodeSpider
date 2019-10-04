@@ -6,9 +6,10 @@ const server = net.createServer((socket) => {
     },3000);*/
     socket.on('data',(data)=>{
         console.log(`这是服务器端接收到的信息: ${data}`);
-        /*data.msg=data.msg+'：：這其實是服務段處理的數據';
-        socket.write(data);*/
-
+        console.log(JSON.stringify(data));
+        /*let parse = JSON.parse(data);
+        parse.msg=parse.msg+'：：這其實是服務段處理的數據';
+        socket.write(JSON.stringify(parse));*/
     });
 });
 
