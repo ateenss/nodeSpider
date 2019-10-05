@@ -3,25 +3,30 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.js"
+    "start": "node ./app.js",
+    "build": "webpack --progress --colors"
   },
   "dependencies": {
+    "bcrypt": "~3.0.6",
+    "bluebird": "~3.5.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "lodash": "~4.17.15",
+    "log4js": "~5.1.0",
+    "moment": "~2.24.0",
     "morgan": "~1.9.1",
     "mysql": "~2.17.1",
-    "lodash": "~4.17.15",
-    "moment": "~2.24.0",
-    "bluebird": "~3.5.5",
+    "passport": "~0.4.0",
     "passport-local": "~1.0.0",
     "sequelize": "^5.18.4",
-    "passport": "~0.4.0",
-    "bcrypt": "~3.0.6",
-    "log4js": "~5.1.0",
+    "source-map-support": "^0.5.13",
+    "transducers.js": "^0.3.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "4.41.0",
+    "webpack-cli": "^3.3.9",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.1.1"
   }
