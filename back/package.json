@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,6 +20,9 @@
     "sequelize": "^5.18.4",
     "passport": "~0.4.0",
     "bcrypt": "~3.0.6",
-    "log4js": "~5.1.0"
+    "log4js": "~5.1.0",
+    "webpack": "4.41.0",
+    "webpack-dev-server": "3.2.1",
+    "webpack-manifest-plugin": "2.1.1"
   }
 }
