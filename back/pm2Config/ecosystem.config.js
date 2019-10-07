@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     name: 'nodeSpider',
     // script: 'app.js',
-    script: '../build/backend.js',
+    script: '../backend.js',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'one two',
@@ -12,10 +12,12 @@ module.exports = {
     error_file:"./pm2Logs/error.log",
     out_file:"./pm2Logs/out.log",
     max_memory_restart: '1G',
-    env: {
+    env_development: {
+      PORT: 5000,
       NODE_ENV: 'development'
     },
     env_production: {
+      PORT: 5000,
       NODE_ENV: 'production'
     },
 

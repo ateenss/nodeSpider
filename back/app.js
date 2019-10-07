@@ -12,7 +12,10 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+//tod0:就是因为这里寻址没找到，直接报错，到后面
 app.set('views', path.join(__dirname, 'views'));
+console.log(__dirname);
+
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));

@@ -15,7 +15,7 @@ module.exports = {
     entry: './app.js',
     target: 'node',
     output: {
-        path: path.join(__dirname, 'build'),
+        path: __dirname,
         filename: 'backend.js'
     },
     externals: nodeModules,
@@ -28,5 +28,9 @@ module.exports = {
                 entryOnly: false }),
     ],
     mode:'production',
-    devtool: 'sourcemap'
+    devtool: 'source-map',
+    node: {
+        __dirname: false,
+        __filename: false,
+    }
 };
